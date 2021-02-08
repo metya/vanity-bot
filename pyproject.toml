@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "vanity-bot"
+version = "0.1.0"
+description = "Telegram bot that replace arxiv.org links with mobile responsive and fancy arxiv-vanity.com links with builtin snippets to telegram chats."
+authors = ["metya <metya.tm@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aiogram = "^2.10.1"
+logzero = "^1.5.0"
+cchardet = "^2.1.6"
+ujson = "^4.0.1"
+aiohttp = {extras = ["speedups"], version = "^3.6.3"}
+multidict = "^5.0.0"
+aiodns = "^2.0.0"
+brotlipy = "^0.7.0"
+
+[tool.poetry.dev-dependencies]
+pip-chill = "^1.0.0"
+pipreqs = "^0.4.10"
+commitizen = "^2.4.1"
+pre-commit = "^2.7.1"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.1"
+tag_format = "$version"
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
