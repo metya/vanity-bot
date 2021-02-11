@@ -40,7 +40,6 @@ async def cats(message: types.Message):
                 .split('/')[-1]
                 .split(' ')[0])
     await message.reply(f'https://arxiv-vanity.com/papers/{id_paper}')
-    # await bot.send_message(message.from_user.id, message.text)
 
 
 if __name__ == "__main__":

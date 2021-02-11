@@ -1,0 +1,22 @@
+FROM python:slim
+
+ENV PIP_NO_CACHE_DIR=off \
+    PIP_DISABLE_PIP_VERSION_CHECK=on
+SHELL [ "bash", "-c" ]
+
+RUN pip install poetry
+
+WORKDIR /app
+ADD poetry.lock pyproject.toml /app/
+
+RUN poetry config virtualenvs.create false
+RUN apt update && apt install -y gcc
+RUN poetry install --no-interaction --no-dev
+
+ADD . /app
+
+EXPOSE 8081
+
+ENTRYPOINT [ "python", "vanitybot.py" ]
+
+
