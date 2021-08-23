@@ -22,7 +22,7 @@ def get_paper_desc(id_paper: str) -> tuple:
         with suppress(TypeError): 
             url = soup.find('meta', property='og:url').get('content')
             title = soup.find('meta', property='og:title').get('content')
-            description = soup.find('meta', property='og:description').get('content').replace('\n', '')
+            description = soup.find('meta', property='og:description').get('content').replace('\n', ' ')
             return url, title, description
     
     return None
