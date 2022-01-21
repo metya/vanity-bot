@@ -9,7 +9,7 @@ python = "^3.9"
 aiogram = "^2.10.1"
 logzero = "^1.5.0"
 cchardet = "^2.1.6"
-ujson = "^4.0.1"
+ujson = "^5.1.0"
 aiohttp = {extras = ["speedups"], version = "^3.6.3"}
 multidict = "^5.0.0"
 aiodns = "^2.0.0"
