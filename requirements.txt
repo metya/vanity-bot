@@ -1,7 +1,9 @@
-logzero==1.6.3
-requests==2.25.1
-aiogram==2.11.2
-attrs==20.3.0
-attr==0.3.1
-beautifulsoup4==4.9.3
-python-dotenv==0.16.0
+aiogram
+aiohttp
+aiodns
+ujson
+uvloop
+cchardet
+beautifulsoup4
+python-dotenv
+requests-html

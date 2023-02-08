@@ -7,7 +7,6 @@ authors = ["metya <metya.tm@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 aiogram = "^2.10.1"
-logzero = "^1.5.0"
 cchardet = "^2.1.6"
 ujson = "^5.4.0"
 aiohttp = {extras = ["speedups"], version = "^3.7.4"}
@@ -25,6 +24,7 @@ pre-commit = "^2.10.1"
 name = "cz_conventional_commits"
 version = "0.1.0"
 tag_format = "$version"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

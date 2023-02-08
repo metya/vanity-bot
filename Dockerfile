@@ -9,7 +9,7 @@ RUN apk add --no-cache --virtual .build-deps gcc musl-dev
 
 WORKDIR /app
 ADD prod-requirements.txt /app
-RUN pip install --no-cache-dir -r prod-requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 RUN apk del .build-deps
 
 ADD . /app
