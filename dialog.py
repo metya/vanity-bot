@@ -22,16 +22,16 @@ buttons = [
 
 async def get_data(dialog_manager: DialogManager, **kwargs):
     data = dialog_manager.current_context()
-    item_id = data.widget_data.get('radio_buttons')
+    item_id = data.widget_data.get('radio_buttons') #type: ignore
     p = {"text": "OOOPS!"}
-    title = data.start_data["title"]
-    url = data.start_data["url"]
+    title = data.start_data["title"] #type: ignore
+    url = data.start_data["url"] #type: ignore
     
-    if data.dialog_data.get('abs'):
-        abst = data.dialog_data.get('abs')
+    if data.dialog_data.get('abs'): #type: ignore
+        abst = data.dialog_data.get('abs') #type: ignore
     else:
-        data.dialog_data["abs"] = data.start_data["reply_message"]
-        abst = data.dialog_data.get('abs')
+        data.dialog_data["abs"] = data.start_data["reply_message"] #type: ignore
+        abst = data.dialog_data.get('abs') #type: ignore
 
     if item_id == "2":
         if data.dialog_data.get("summary"):
