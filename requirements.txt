@@ -1,9 +1,12 @@
 aiogram
+# cython
 aiohttp
 aiodns
 ujson
 uvloop
-cchardet
+# cchardet
 beautifulsoup4
 python-dotenv
-requests-html
+aiogram_dialog
+sqlmodel
+aiosqlite

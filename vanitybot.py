@@ -1,17 +1,20 @@
 import re
 import logging
+import asyncio
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram_dialog import DialogManager, DialogRegistry, StartMode
 from config import API_TOKEN
 from dialog import dialog, MySG
+from progress import bg_dialog
 from summarize import get_paper_desc
 
 # Initialize bot and dispatcher
-bot = Bot(token=API_TOKEN)
+bot = Bot(token=API_TOKEN) # type: ignore
 dp = Dispatcher(bot, storage=MemoryStorage())
 registry = DialogRegistry(dp)
 registry.register(dialog)
+registry.register(bg_dialog)
 
 help_message = "Hello!\n\n\
 Send me a link paper from arxiv.org and \
@@ -27,13 +30,22 @@ async def process_start_command(message: types.Message):
 @dp.message_handler(commands=['help'])
 async def process_help_command(message: types.Message):
     await message.reply(help_message)
+    
+@dp.message_handler(commands=['long'])
+async def long(message: types.Message):
+    import random
+    long = "".join(str(random.randint(1,10)) for _ in range(3700))
+    await message.reply(long)
 
 
 @dp.message_handler(regexp=r'arxiv.org\/(?:abs|pdf)\/\d{4}\.\d{5}')
 async def vanitify(message: types.Message, dialog_manager: DialogManager):
-    papers_ids = re.findall(r'arxiv.org\/(?:abs|pdf)\/(\d{4}\.\d{5})', message.text)
+    papers_ids = re.findall(r'arxiv.org\/(?:abs|pdf)\/(\d{4}\.\d{5}[v]?[\d]?)', message.text)
+    
+    async def start_dialog(manager=dialog_manager.bg(), state=MySG.main, mode=StartMode.NEW_STACK, data={}):
+        await manager.start(state=state, mode=mode, data=data)
 
-    for id_ in papers_ids:
+    async def get_paper_abs(id_):
         reply_message = f"[Here you can read the paper in mobile friendly way](https://www.arxiv-vanity.com/papers/{id_})"
         data = {
             "id": id_,
@@ -42,22 +54,28 @@ async def vanitify(message: types.Message, dialog_manager: DialogManager):
             "title": None,
             "abs": None
         }
-        if desc := get_paper_desc(id_):
-            url, title, description = desc
-            reply_message = f'{url}\n\n***{title}***\n\n{description}\n\n{reply_message}'
+        if paper := await get_paper_desc(id_):
+            id_, url, title, abstract, authors = paper.values()
+            reply_message = f'{url}\n\n***{title}***\n\n{abstract}\n\n{reply_message}'
             data.update({
+                "id": id_,
                 "reply_message": reply_message,
                 "url": url,
                 "title": title,
-                "abs": description
+                "abs": abstract,
+                "authors": authors
                 })
         else:
             reply_message = f'Something went wrong. Can not reach arxiv.com :('
             data["reply_message"] = reply_message
+        return data
 
-        await dialog_manager.start(MySG.main, mode=StartMode.NEW_STACK, data=data)
+    list_data = await asyncio.gather(*[get_paper_abs(id_) for id_ in papers_ids])
+    asyncio.gather(*[start_dialog(data=data) for data in list_data])
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
+    logging.getLogger("asyncio").setLevel(logging.DEBUG)
+    logging.getLogger("aiogram_dialog").setLevel(logging.DEBUG)
     executor.start_polling(dp, skip_updates=True)
