@@ -2,3 +2,10 @@ geckodriver
 *.ipynb
 *.log
 token
+.DS_Store
+.ipynb_checkpoints
+.vscode
+__pycache__
+.mypy_cache
+js.js
+paper.json

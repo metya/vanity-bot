@@ -6,7 +6,5 @@ if env_var := dotenv_values('token'):
 else:
     API_TOKEN = getenv("API_TOKEN")
 
-print(API_TOKEN)
-
 if __name__ == "__main__":
     print(API_TOKEN)

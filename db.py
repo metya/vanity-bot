@@ -149,7 +149,6 @@ if __name__ == "__main__":
     import json
     with open("paper.json", 'r') as file:
         paper = json.load(file)
-    # print(paper)
     paper["title"] = paper["metadata"]["title"]
     paper["authors"] = paper["metadata"]["author"].split(",").strip()
     paper["abstract"] = paper["metadata"]["abstract"]
@@ -157,13 +156,4 @@ if __name__ == "__main__":
 
     async def main():
         await add_authors_and_paper("2203.02155v1", paper)
-
-        # paper = await check_paper("1234.1212v1")
-        # if paper:
-        #     print("\n\n\n\n")
-        #     print(paper.summary)
-        #     print("\n\n")
-        #     print(paper.summary[0])
-
     asyncio.run(main())
-    

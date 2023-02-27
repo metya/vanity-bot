@@ -130,7 +130,7 @@ async def get_paper_desc(id_paper: str) -> dict | None:
         async with ClientSession() as session:
             async with await session.get(f'https://arxiv.org/abs/{id_paper}') as request:
                 if request.ok:
-                    soup = BeautifulSoup(await request.text(), features="xml")
+                    soup = BeautifulSoup(await request.text(), features="html.parser")
                     try:
                         url = soup.find('meta', property='og:url').get('content') # type: ignore
                         paper = {
@@ -145,4 +145,3 @@ async def get_paper_desc(id_paper: str) -> dict | None:
                     except TypeError:
                         pass
     return None
-

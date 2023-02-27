@@ -5,4 +5,5 @@ services:
     # image: vanity
     environment:
       - API_TOKEN
+      - GITHUB_TOKEN
     restart: always
