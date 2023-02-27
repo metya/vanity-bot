@@ -3,7 +3,7 @@ name: Deploy bot with docker-compose
 on:
   push:
     tags:
-      - v1.*
+      - "*"
 
 jobs:
   deploy-bot:
