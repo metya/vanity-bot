@@ -2,8 +2,6 @@ name: Deploy bot with docker-compose
 
 on:
   push:
-    branches:
-      - master
     tags:
       - v1.*
 
