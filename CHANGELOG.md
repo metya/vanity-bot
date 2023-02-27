@@ -1,3 +1,19 @@
+## 1.0.1 (2023-02-27)
+
+### Fix
+
+- fix actions
+
+## 1.0.0 (2023-02-26)
+
+### Feat
+
+- add database and summarizer
+
+### Refactor
+
+- **Delete-poetry-for-fuck-sake**: Delete poetry for fuck sake
+
 ## 0.2.0 (2023-02-08)
 
 ### Refactor
