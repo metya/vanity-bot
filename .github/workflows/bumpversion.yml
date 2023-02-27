@@ -20,6 +20,8 @@ jobs:
         name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
+          extra_requirements: commitizen-emoji
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          debug: true
       - name: Print Version
         run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
