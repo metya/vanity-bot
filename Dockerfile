@@ -15,12 +15,11 @@ ADD requirements.txt /app
 RUN pip install --no-cache-dir -r requirements.txt
 RUN apk del .build-deps
 
-# RUN echo "0 0 * * 1 /bin/sh /app/backup_db.sh" >> /var/spool/cron/crontabs/root
-RUN echo "* * * * * /bin/sh /app/backup_db.sh" > /var/spool/cron/crontabs/root
+RUN echo "0 0 * * 1 /bin/sh /app/backup_db.sh" >> /var/spool/cron/crontabs/root
 
 RUN git config --global user.name "metya"
 RUN git config --global user.email "metya.tm@gmail.com"
 
 ADD . /app
 
-ENTRYPOINT crond -f -l 0 && python vanitybot.py
+ENTRYPOINT crond && python vanitybot.py
