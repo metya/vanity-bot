@@ -16,17 +16,13 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v3
-      - name: RUN ECHO
-        run: echo $API_TOKEN
       - name: Deploy compose
         uses: wshihadeh/docker-deployment-action@v2
-        # env:
-        #   API_TOKEN: ${ { secrets.API_TOKEN } }
         with:
           remote_docker_host: ${{ secrets.REMOTE_HOST }}
           ssh_private_key: ${{ secrets.PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.PUBLIC_KEY }}
           deployment_mode: docker-compose
           args: up -d
-          docker_prune: "false"
+          docker_prune: "true"
           pull_images_first: "false"
