@@ -2,6 +2,7 @@ version: "3.7"
 services:
   bot:
     build: .
+    # image: vanity
     environment:
       - API_TOKEN
     restart: always

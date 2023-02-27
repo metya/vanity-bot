@@ -22,6 +22,9 @@ I'll send you back snippet of paper and arxiv-vanity.com mobile friendly link!\n
 Or add me to chat and I'll be watching the arxiv link and \
 reply to them with fancy arxiv-vanity links."
 
+async def deploy_message():
+    await bot.send_message(chat_id=1147194, text='The deployment has been performed')
+
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
     await message.reply(help_message)
@@ -46,7 +49,7 @@ async def vanitify(message: types.Message, dialog_manager: DialogManager):
         await manager.start(state=state, mode=mode, data=data)
 
     async def get_paper_abs(id_):
-        reply_message = f"[Here you can read the paper in mobile friendly way](https://www.arxiv-vanity.com/papers/{id_})"
+        reply_message = f"[Here you maybe can read the paper in mobile friendly way](https://www.arxiv-vanity.com/papers/{id_})"
         data = {
             "id": id_,
             "reply_message": reply_message,
@@ -76,6 +79,8 @@ async def vanitify(message: types.Message, dialog_manager: DialogManager):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    logging.getLogger("asyncio").setLevel(logging.DEBUG)
-    logging.getLogger("aiogram_dialog").setLevel(logging.DEBUG)
+    # logging.getLogger("asyncio").setLevel(logging.DEBUG)
+    # logging.getLogger("aiogram_dialog").setLevel(logging.DEBUG)
+
+    asyncio.get_event_loop().run_until_complete(deploy_message())
     executor.start_polling(dp, skip_updates=True)

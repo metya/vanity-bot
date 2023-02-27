@@ -19,4 +19,4 @@ updates:
     allow:
       - dependency-type: "all"
     commit-message:
-      prefix: ":arrow_up:" v
+      prefix: ":arrow_up:"
