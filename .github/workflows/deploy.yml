@@ -24,6 +24,6 @@ jobs:
           ssh_private_key: ${{ secrets.PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.PUBLIC_KEY }}
           deployment_mode: docker-compose
-          args: up -d
+          args: up -d --force-recreate --build
           docker_prune: "true"
           pull_images_first: "false"
