@@ -4,10 +4,10 @@ import asyncio
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram_dialog import DialogManager, DialogRegistry, StartMode
-from config import API_TOKEN
-from dialog import dialog, MySG
-from progress import bg_dialog
-from summarize import get_paper_desc
+from src.config import API_TOKEN
+from src.dialog import dialog, MySG
+from src.progress import bg_dialog
+from src.summarize import get_paper_desc
 
 # Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN) # type: ignore

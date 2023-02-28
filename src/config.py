@@ -1,7 +1,7 @@
 from os import getenv
 from dotenv import dotenv_values
 
-if env_var := dotenv_values('token'):
+if env_var := dotenv_values('misc/token'):
     API_TOKEN = env_var["API_TOKEN"]
 else:
     API_TOKEN = getenv("API_TOKEN")

@@ -5,11 +5,11 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession as _AsyncSe
 from sqlalchemy.orm import selectinload
 
 
-async_sqlite_url = "sqlite+aiosqlite:///papers.db"
+async_sqlite_url = "sqlite+aiosqlite:///db/papers.db"
 echo = False
 
 async_engine = create_async_engine(async_sqlite_url, echo=echo)
-engine = create_engine("sqlite:///papers.db", echo=echo)
+engine = create_engine("sqlite:///db/papers.db", echo=echo)
 
 
 # models
@@ -147,7 +147,7 @@ async def add_or_update_paper(id_:str, paper: dict, async_engine = async_engine)
 
 if __name__ == "__main__":
     import json
-    with open("paper.json", 'r') as file:
+    with open("misc/paper.json", 'r') as file:
         paper = json.load(file)
     paper["title"] = paper["metadata"]["title"]
     paper["authors"] = paper["metadata"]["author"].split(",").strip()

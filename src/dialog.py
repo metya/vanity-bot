@@ -9,9 +9,9 @@ from aiogram_dialog.widgets.kbd import Radio
 from aiogram_dialog.widgets.text import Format
 from aiogram.types import ParseMode
 
-from summarize import get_summary
+from src.summarize import get_summary
 
-from progress import Bg, background
+from src.progress import Bg, background
 
 warn = "***Note, that it is an AI generated summary, and it may contain complete bullshit***"
 

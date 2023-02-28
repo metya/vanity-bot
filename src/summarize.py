@@ -6,7 +6,7 @@ from aiohttp import ClientSession
 from aiogram_dialog import DialogManager
 from typing import Any
 
-from db import add_authors_and_paper, add_or_update_paper, check_paper
+from src.db import add_authors_and_paper, add_or_update_paper, check_paper
 
 base_url = "https://engine.scholarcy.com/api/"
 extract_url = "metadata/extract"

@@ -13,7 +13,7 @@ from aiogram_dialog.widgets.text import Const, Multi, Text
 
 from typing import Any
 
-from config import API_TOKEN
+from src.config import API_TOKEN
 
 
 class Processing(Text):

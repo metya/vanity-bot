@@ -1,7 +1,9 @@
 version: "3.7"
 services:
   bot:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     image: metya/vanity_bot
     container_name: vanity_bot
     environment:
