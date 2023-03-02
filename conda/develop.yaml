@@ -12,6 +12,7 @@ dependencies:
   - asttokens=2.2.1=pyhd8ed1ab_0
   - async-timeout=4.0.2=pyhd8ed1ab_0
   - async_generator=1.10=py_0
+  - atk-1.0=2.38.0=hcb7b3dd_1
   - attrs=22.2.0=pyh71513ae_0
   - backcall=0.2.0=pyh9f0ad1d_0
   - backports=1.0=pyhd8ed1ab_3
@@ -20,6 +21,7 @@ dependencies:
   - brotlipy=0.7.0=py311he2be06e_1005
   - bzip2=1.0.8=h3422bc3_4
   - ca-certificates=2022.12.7=h4653dfc_0
+  - cairo=1.16.0=h73a0509_1014
   - cchardet=2.1.7=py311ha397e9f_4
   - certifi=2022.12.7=pyhd8ed1ab_0
   - cffi=1.15.1=py311hae827db_3
@@ -34,15 +36,34 @@ dependencies:
   - debugpy=1.6.6=py311ha397e9f_0
   - decli=0.5.2=pyhd8ed1ab_0
   - decorator=5.1.1=pyhd8ed1ab_0
+  - deprecated=1.2.13=pyh6c4a22f_0
+  - diagrams=0.21.0=pyhd8ed1ab_0
   - distlib=0.3.6=pyhd8ed1ab_0
   - docopt=0.6.2=py_1
   - executing=1.2.0=pyhd8ed1ab_0
+  - expat=2.5.0=hb7217d7_0
   - fake-useragent=1.1.1=pyhd8ed1ab_0
   - filelock=3.9.0=pyhd8ed1ab_0
+  - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
+  - font-ttf-inconsolata=3.000=h77eed37_0
+  - font-ttf-source-code-pro=2.038=h77eed37_0
+  - font-ttf-ubuntu=0.83=hab24e00_0
+  - fontconfig=2.14.2=h82840c6_0
+  - fonts-conda-ecosystem=1=0
+  - fonts-conda-forge=1=0
   - freetype=2.12.1=hd633e50_1
+  - fribidi=1.0.10=h27ca646_0
   - frozenlist=1.3.3=py311he2be06e_0
+  - gdk-pixbuf=2.42.10=h9bcf4fe_0
+  - gettext=0.21.1=h0186832_0
+  - giflib=5.2.1=h27ca646_2
+  - graphite2=1.3.13=h9f76cd9_1001
+  - graphviz=7.1.0=h4f8fbd6_0
   - greenlet=2.0.2=py311ha397e9f_0
+  - gtk2=2.24.33=h57013de_2
+  - gts=0.7.6=h4b6d4d6_2
   - h11=0.14.0=pyhd8ed1ab_0
+  - harfbuzz=6.0.0=hddbc195_0
   - icu=70.1=h6b3803e_0
   - identify=2.5.17=pyhd8ed1ab_0
   - idna=3.4=pyhd8ed1ab_0
@@ -60,12 +81,17 @@ dependencies:
   - libcxx=14.0.6=h2692d47_0
   - libdeflate=1.17=h1a8c8d9_0
   - libffi=3.4.2=h3422bc3_5
+  - libgd=2.3.3=h90fb8ed_4
+  - libglib=2.74.1=h4646484_1
   - libiconv=1.17=he4db4b2_0
   - libpng=1.6.39=h76d750c_0
+  - librsvg=2.54.4=ha2634a2_0
   - libsodium=1.0.18=h27ca646_1
   - libsqlite=3.40.0=h76d750c_0
   - libtiff=4.5.0=h5dffbdd_2
+  - libtool=2.4.7=hb7217d7_0
   - libuv=1.44.2=he4db4b2_0
+  - libwebp=1.2.4=h999c80f_1
   - libwebp-base=1.2.4=h57fd34a_0
   - libxcb=1.13=h9b22ae9_1004
   - libxml2=2.10.3=h87b0503_0
@@ -84,13 +110,16 @@ dependencies:
   - openssl=3.0.8=h03a7124_0
   - outcome=1.2.0=pyhd8ed1ab_0
   - packaging=21.3=pyhd8ed1ab_0
+  - pango=1.50.13=h6c112b8_0
   - parse=1.19.0=pyh44b312d_0
   - parso=0.8.3=pyhd8ed1ab_0
+  - pcre2=10.40=hb34f9b4_0
   - pexpect=4.8.0=pyh1a96a4e_2
   - pickleshare=0.7.5=py_1003
   - pillow=9.4.0=py311h627eb56_1
   - pip=23.0=pyhd8ed1ab_0
   - pipreqs=0.4.11=pyhd8ed1ab_0
+  - pixman=0.40.0=h27ca646_0
   - platformdirs=2.6.2=pyhd8ed1ab_0
   - pre-commit=3.0.4=py311h267d04e_0
   - prompt-toolkit=3.0.36=pyha770c72_0
@@ -103,7 +132,10 @@ dependencies:
   - pycparser=2.21=pyhd8ed1ab_0
   - pydantic=1.10.4=py311he2be06e_1
   - pyee=8.1.0=pyhd8ed1ab_0
+  - pygithub=1.58.0=pyh1a96a4e_0
   - pygments=2.14.0=pyhd8ed1ab_0
+  - pyjwt=2.6.0=pyhd8ed1ab_0
+  - pynacl=1.5.0=py311he2be06e_2
   - pyopenssl=23.0.0=pyhd8ed1ab_0
   - pyparsing=3.0.9=pyhd8ed1ab_0
   - pyppeteer=1.0.2=pyhd8ed1ab_0
@@ -112,6 +144,7 @@ dependencies:
   - python=3.11.0=h3ba56d0_1_cpython
   - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python-dotenv=0.21.1=pyhd8ed1ab_0
+  - python-graphviz=0.19.2=pyhaef67bd_0
   - python_abi=3.11=3_cp311
   - pyyaml=6.0=py311he2be06e_5
   - pyzmq=25.0.0=py311h0f351f6_0
@@ -151,6 +184,7 @@ dependencies:
   - webdriver-manager=3.8.5=pyhd8ed1ab_0
   - websockets=10.4=py311he2be06e_1
   - wheel=0.38.4=pyhd8ed1ab_0
+  - wrapt=1.15.0=py311he2be06e_0
   - wsproto=1.2.0=pyhd8ed1ab_0
   - xorg-libxau=1.0.9=h27ca646_0
   - xorg-libxdmcp=1.1.3=h27ca646_0
@@ -160,6 +194,7 @@ dependencies:
   - yarl=1.8.2=py311he2be06e_0
   - zeromq=4.3.4=hbdafb3b_1
   - zipp=3.12.1=pyhd8ed1ab_0
+  - zlib=1.2.13=h03a7124_4
   - zstd=1.5.2=hf913c23_6
   - pip:
       - aiogram==2.25.1

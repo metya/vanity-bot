@@ -4,16 +4,35 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import StatesGroup, State
-from aiogram.types import Message, CallbackQuery
+from aiogram.dispatcher.middlewares import BaseMiddleware
+from aiogram.types import Message, CallbackQuery, User
+from aiogram.utils.exceptions import Throttled
+from aiogram.dispatcher import DEFAULT_RATE_LIMIT
+from aiogram.dispatcher.handler import CancelHandler, current_handler
 
 from aiogram_dialog import Dialog, DialogManager, Window, DialogRegistry, BaseDialogManager, \
     StartMode
 from aiogram_dialog.widgets.kbd import Button
-from aiogram_dialog.widgets.text import Const, Multi, Text
+from aiogram_dialog.widgets.text import Const, Multi, Text, Format
 
-from typing import Any
+from typing import Any, Callable, Dict, Awaitable, Union
 
-from src.config import API_TOKEN
+try: 
+    from src.config import API_TOKEN
+except:
+    from config import API_TOKEN
+
+class TrickyUser(BaseMiddleware):
+    def __init__(self, user_id: int,):
+        super().__init__()
+        self.default_user = user_id
+
+    async def on_process_update(self, update, data):
+        if message:=update.message:
+            message.from_user.id = self.default_user
+        if callback:=update.callback_query:
+            callback.from_user.id = self.default_user
+        # print(update)
 
 
 class Processing(Text):
@@ -60,12 +79,29 @@ bg_dialog = Dialog(
 # main dialog
 class MainSG(StatesGroup):
     main = State()
+    background = State()
 
 
-async def start_bg(c: CallbackQuery, button: Button, manager: DialogManager):
-    await manager.start(Bg.progress)
-    asyncio.create_task(background(c, manager.bg()))
+async def start_bg(c: CallbackQuery, button: Button, dialog_manager: DialogManager, **kwargs):
+    # await manager.start(Bg.progress)
+    # asyncio.create_task(background(c, manager.bg()))
+    await dialog_manager.dialog().switch_to(MainSG.background)
+    await task_background(dialog_manager)
 
+
+async def get_task_bg_data(dialog_manager: DialogManager, **kwargs):
+    for key, val in kwargs.items():
+        print(key, val)
+    kwargs['aiogd_storage_proxy'].user_id = 1
+    print(dialog_manager)
+    return {"text": dialog_manager.current_context().dialog_data.get("text", "gay")} # type: ignore
+
+async def task_background(manager: DialogManager):
+    print(manager.current_context())
+    for i in range(5):
+        print(i)
+        await manager.update({"text": f"pidor{i}"})
+        await asyncio.sleep(1)
 
 async def background(c: CallbackQuery,
                      manager: DialogManager | BaseDialogManager,
@@ -92,17 +128,28 @@ async def background(c: CallbackQuery,
     await manager.done()
 
 
+async def back(c, button, dialog_manager):
+    await dialog_manager.dialog().back()
+
 main_menu = Dialog(
     Window(
         Const("Press button to start processing"),
         Button(Const("Start 👀"), id="start", on_click=start_bg),
         state=MainSG.main,
-        getter=get_bg_data
+        getter=get_task_bg_data
     ),
+    Window(
+        Const("THIS IS BACKGROUND"),
+        Format("{text}"),
+        Button(Const("Back"), id='back', on_click=back),
+        state=MainSG.background,
+        getter=get_task_bg_data
+    )
 )
 
 
-async def start(m: Message, dialog_manager: DialogManager):
+async def start(m: Message, dialog_manager: DialogManager, **kwargs):
+    # print(kwargs)
     await dialog_manager.start(MainSG.main, mode=StartMode.RESET_STACK)
 
 
@@ -116,8 +163,9 @@ async def main():
     registry = DialogRegistry(dp)
     registry.register(bg_dialog)
     registry.register(main_menu)
+    dp.middleware.setup(TrickyUser(1))
     dp.register_message_handler(start, text="/start", state="*")
-
+    await dp.skip_updates()
     await dp.start_polling()
 
 

@@ -4,7 +4,7 @@ from asyncio import sleep, create_task, gather, get_event_loop, Queue, current_t
 from typing import Any, List
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.types import Message, CallbackQuery
-from aiogram_dialog import Window, Dialog, DialogManager, StartMode, Data
+from aiogram_dialog import Window, Dialog, DialogManager, StartMode, Data, BaseDialogManager
 from aiogram_dialog.widgets.kbd import Radio
 from aiogram_dialog.widgets.text import Format
 from aiogram.types import ParseMode
@@ -33,6 +33,14 @@ buttons = [
     ]
 
 
+async def time_out_dialog(manager: BaseDialogManager, widget: Any, time_out: int = 1200):
+    for _ in range(time_out):
+        await sleep(1)
+    await manager.update({"final_state": "1"})
+    await sleep(1)
+    await manager.done()
+
+
 async def get_data(dialog_manager: DialogManager, **kwargs):
     text_message = {"text": "OOOPS!"}
     if data := dialog_manager.current_context():
@@ -44,6 +52,8 @@ async def get_data(dialog_manager: DialogManager, **kwargs):
         item_id = data.widget_data.get('radio_buttons') #type: ignore
         title = data.start_data["title"] #type: ignore
         url = data.start_data["url"] #type: ignore
+        if ft:=data.dialog_data.get("final_state"):
+            item_id = ft
         if data.dialog_data.get('abs'): #type: ignore
             abstract = data.dialog_data.get('abs') #type: ignore
         else:
@@ -117,6 +127,12 @@ async def on_button_selected(c: CallbackQuery, widget: Any, manager: DialogManag
     return {"text": item_id}
 
 
+async def default_button(c: CallbackQuery, dialog_manager: DialogManager, **kwargs):
+    if widget:=dialog_manager.dialog().find("radio_buttons"):
+        await widget.set_checked(c, "1", dialog_manager)
+    create_task(time_out_dialog(manager=dialog_manager.bg(), widget=widget))
+
+
 buttons_kbd = Radio(
     Format("✓ {item[0]}"),
     Format("{item[0]}"),
@@ -135,6 +151,6 @@ dialog = Dialog(
         getter=get_data,
         parse_mode=ParseMode.MARKDOWN, # type: ignore
         # preview_data={"button": "1"}
-    )
+    ),
+    on_start=default_button,
 )
-
