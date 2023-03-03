@@ -8,7 +8,7 @@ ENV GITHUB_TOKEN=$GITHUB_TOKEN
 ENV API_TOKEN=$API_TOKEN
 
 RUN apk add --no-cache --virtual .build-deps gcc musl-dev libffi-dev curl
-RUN apk add --no-cache git git-lfs expect
+RUN apk add --no-cache git git-lfs
 
 WORKDIR /app
 ADD requirements.txt /app
