@@ -21,7 +21,7 @@ jobs:
         name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
-          extra_requirements: commitizen-emoji
+          extra_requirements: cz-emoji
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           debug: true
       - name: Print Version

@@ -1,4 +1,4 @@
 [tool.commitizen]
-# name = "cz_commitizen_emoji"
+name = "cz_emoji"
 version = "1.1.0"
 tag_format = "$version"
