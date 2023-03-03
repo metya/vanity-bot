@@ -10,7 +10,7 @@ from aiogram_dialog.widgets.text import Format
 from aiogram.types import ParseMode
 
 from src.summarize import get_summary
-
+from src.config import TIME_OUT
 from src.progress import Bg, background
 
 warn = "***Note, that it is an AI generated summary, and it may contain complete bullshit***"
@@ -33,7 +33,8 @@ buttons = [
     ]
 
 
-async def time_out_dialog(manager: BaseDialogManager, widget: Any, time_out: int = 1200):
+async def time_out_dialog(manager: BaseDialogManager, widget: Any, time_out: int|str|None = TIME_OUT):
+    time_out = int(time_out) if time_out else 1800
     for _ in range(time_out):
         await sleep(1)
     await manager.update({"final_state": "1"})

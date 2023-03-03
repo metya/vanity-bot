@@ -9,4 +9,5 @@ services:
     environment:
       - API_TOKEN
       - GITHUB_TOKEN
+      - TIME_OUT
     restart: always
