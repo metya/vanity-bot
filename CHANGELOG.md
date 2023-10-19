@@ -1,3 +1,25 @@
+## 1.2.0 (2023-10-19)
+
+
+- fix: a little fixes
+- 🔨 fix(ci): change commitizen extension
+- 🎉 feat: add time_out as an env variable
+- this is about to have access to time out when starting container
+- Merge pull request #12 from metya/dependabot/github_actions/actions/checkout-4
+- :arrow_up: Bump actions/checkout from 3 to 4
+- :arrow_up: Bump actions/checkout from 3 to 4
+- Bumps [actions/checkout](https://github.com/actions/checkout) from 3 to 4.
+- [Release notes](https://github.com/actions/checkout/releases)
+- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/actions/checkout/compare/v3...v4)
+- ---
+updated-dependencies:
+- dependency-name: actions/checkout
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+- Signed-off-by: dependabot[bot] <support@github.com>
+
 ## 1.1.0 (2023-03-03)
 
 ### Fix
