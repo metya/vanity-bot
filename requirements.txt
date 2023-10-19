@@ -1,4 +1,4 @@
-aiogram
+aiogram==2.25.2
 # cython
 aiohttp
 aiodns
@@ -7,6 +7,6 @@ uvloop
 # cchardet
 beautifulsoup4
 python-dotenv
-aiogram_dialog
+aiogram_dialog==1.9.0
 sqlmodel
 aiosqlite

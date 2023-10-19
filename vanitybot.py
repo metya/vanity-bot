@@ -53,6 +53,7 @@ async def vanitify(message: types.Message, dialog_manager: DialogManager):
         }
         if paper := await get_paper_desc(id_):
             id_, url, title, abstract, authors = paper.values()
+            abstract = re.sub(r"\$.*\$", "[replaced mathsf formulae]", abstract)
             reply_message = f'{url}\n\n***{title}***\n\n{abstract}\n\n{reply_message}'
             data.update({
                 "id": id_,

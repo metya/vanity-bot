@@ -34,7 +34,7 @@ buttons = [
 
 
 async def time_out_dialog(manager: BaseDialogManager, widget: Any, time_out: int|str|None = TIME_OUT):
-    time_out = int(time_out) if time_out else 1800
+    time_out = int(time_out) if time_out else 18000
     for _ in range(time_out):
         await sleep(1)
     await manager.update({"final_state": "1"})
