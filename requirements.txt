@@ -1,4 +1,4 @@
-aiogram==2.25.2
+aiogram==3.2.0
 # cython
 aiohttp
 aiodns
