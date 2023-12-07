@@ -7,6 +7,6 @@ uvloop
 # cchardet
 beautifulsoup4
 python-dotenv
-aiogram_dialog==1.9.0
+aiogram_dialog==2.1.0
 sqlmodel
 aiosqlite
